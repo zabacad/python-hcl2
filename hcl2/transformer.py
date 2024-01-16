@@ -44,6 +44,12 @@ class DictTransformer(Transformer):
     def string_lit(self, args: List) -> str:
         return '"' + "".join([str(arg) for arg in args]) + '"'
 
+    def directive(self, args: List) -> str:
+        return "".join([f"%{{{arg}}}" for arg in args])
+
+    def directive_op(self, args: List) -> str:
+        return " ".join([str(arg) for arg in args])
+
     def interpolation(self, args: List) -> str:
         return "".join([self.to_string_dollar(arg) for arg in args])
 
